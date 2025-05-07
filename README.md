@@ -22,16 +22,16 @@ It:
 
 ## 🚀 How to Run the Project
 
-### 🟢 Option 1: Try the Live App (Streamlit Cloud) ✅  
+### 🟢  Try the Live App (Streamlit Cloud) ✅  
 No setup needed! Just click:
 
 🔗 [Live Demo](https://snaptune-final-project1-7zm2adxdf3mjgvhbhrysv7.streamlit.app/)
 
 ---
-
-### ⚙️ Option 2: Run Locally
+or
+### ⚙ Run Locally
 
 1. Clone this repository:
 ```bash
-git clone https://github.com/RavindraSSK/snaptune-final-project.git
+git clone https://github.com/RavindraSSK/snaptune-final-project1.git
 cd snaptune-final-project
