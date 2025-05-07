@@ -7,7 +7,13 @@ Original file is located at
     https://colab.research.google.com/drive/1NVZX_y-mxaMyagyGf9aJzO_cbsk1lQho
 """
 
-!pip install transformers timm spotipy accelerate -q
+import streamlit as st
+from transformers import BlipProcessor, BlipForConditionalGeneration
+import spotipy
+from spotipy.oauth2 import SpotifyClientCredentials
+import os
+
+
 
 from PIL import Image
 import io
