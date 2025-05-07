@@ -1,2 +1,5 @@
-with open("requirements.txt", "w") as f:
-    f.write("streamlit\ntransformers\nPillow\nspotipy\ntimm")
+transformers
+spotipy
+Pillow
+timm
+accelerate
