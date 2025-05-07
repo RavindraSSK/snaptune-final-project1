@@ -6,8 +6,8 @@ from spotipy.oauth2 import SpotifyClientCredentials
 import os
 
 # 🔐 Set Spotify credentials from Streamlit secrets
-os.environ['SPOTIPY_CLIENT_ID'] = st.secrets["SPOTIPY_CLIENT_ID"]
-os.environ['SPOTIPY_CLIENT_SECRET'] = st.secrets["SPOTIPY_CLIENT_SECRET"]
+os.environ['1dcc31fe1856414bb5f6166002009a60'] = st.secrets["1dcc31fe1856414bb5f6166002009a60"]
+os.environ['e006ba5dd99c44f2994aafd0a62bb8e6'] = st.secrets["e006ba5dd99c44f2994aafd0a62bb8e6"]
 
 # UI setup
 st.set_page_config(page_title="SnapTune 🎵", layout="centered")
