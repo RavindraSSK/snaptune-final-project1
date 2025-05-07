@@ -59,26 +59,36 @@ if uploaded_file:
         except Exception as e:
             st.error(f"Spotify error for {lang}: {e}")
 
-        # 📝 Step 4: Generate Instagram caption, hashtags, and quote
+            # ✨ Step 4: Instagram Caption + Hashtags + Quote
     def generate_instagram_caption(caption_text):
+        if not caption_text:
+            caption_text = "no caption"
         emoji = "🎶📷"
         words = [w for w in caption_text.split() if w.isalpha() and len(w) > 3]
-        hashtags = "#" + " #".join(words)
+        hashtags = "#" + " #".join(words) if words else "#music"
         return caption_text.capitalize() + " " + emoji, hashtags
-
+#step4 insta
     def generate_quote(caption_text):
-        text = caption_text.lower()
-        if "flower" in text: return "Let yourself bloom like the flowers — quietly and beautifully."
-        elif "sunset" in text: return "Every sunset brings the promise of a new dawn."
-        elif "beach" in text: return "The cure for anything is saltwater — sweat, tears, or the sea."
-        elif "rain" in text: return "Rain is just confetti from the sky."
-        else: return "Every picture tells a story — make yours worth sharing."
+        text = (caption_text or "").lower()
+        if "flower" in text:
+            return "Let yourself bloom like the flowers — quietly and beautifully."
+        elif "sunset" in text:
+            return "Every sunset brings the promise of a new dawn."
+        elif "beach" in text:
+            return "The cure for anything is saltwater — sweat, tears, or the sea."
+        elif "rain" in text:
+            return "Rain is just confetti from the sky."
+        else:
+            return "Every picture tells a story — make yours worth sharing."
 
-    # ✅ SAFELY assign values to avoid crashing text_area
-    final_caption, final_hashtags = generate_instagram_caption(caption or "no caption")
-    final_quote = generate_quote(caption or "no caption")
+    try:
+        final_caption, final_hashtags = generate_instagram_caption(caption)
+        final_quote = generate_quote(caption)
 
-    st.subheader("📸 Instagram Caption & Quote")
-    st.text_area("📝 Caption", value=str(final_caption), height=60)
-    st.text_area("🏷️ Hashtags", value=str(final_hashtags), height=50)
-    st.markdown(f"💬 **Quote:** _{final_quote}_")
+        st.subheader("📸 Instagram Caption & Quote")
+        st.text_area("📝 Caption", value=final_caption or "No caption generated", height=60)
+        st.text_area("🏷️ Hashtags", value=final_hashtags or "#music", height=50)
+        st.markdown(f"💬 **Quote:** _{final_quote}_")
+    except Exception as e:
+        st.error(f"⚠️ Failed to generate social content: {e}")
+
