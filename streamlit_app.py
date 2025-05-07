@@ -59,7 +59,7 @@ if uploaded_file:
         except Exception as e:
             st.error(f"Spotify error for {lang}: {e}")
 
-    # ✨ Step 4: Generate Instagram caption, hashtags, and quote
+        # 📝 Step 4: Generate Instagram caption, hashtags, and quote
     def generate_instagram_caption(caption_text):
         emoji = "🎶📷"
         words = [w for w in caption_text.split() if w.isalpha() and len(w) > 3]
@@ -74,10 +74,11 @@ if uploaded_file:
         elif "rain" in text: return "Rain is just confetti from the sky."
         else: return "Every picture tells a story — make yours worth sharing."
 
-   final_caption, final_hashtags = generate_instagram_caption(caption or "no caption")
-final_quote = generate_quote(caption or "no caption")
+    # ✅ SAFELY assign values to avoid crashing text_area
+    final_caption, final_hashtags = generate_instagram_caption(caption or "no caption")
+    final_quote = generate_quote(caption or "no caption")
 
-st.subheader("📸 Instagram Caption & Quote")
-st.text_area("📝 Caption", value=str(final_caption), height=60)
-st.text_area("🏷️ Hashtags", value=str(final_hashtags), height=50)
-st.markdown(f"💬 **Quote:** _{final_quote}_")
+    st.subheader("📸 Instagram Caption & Quote")
+    st.text_area("📝 Caption", value=str(final_caption), height=60)
+    st.text_area("🏷️ Hashtags", value=str(final_hashtags), height=50)
+    st.markdown(f"💬 **Quote:** _{final_quote}_")
