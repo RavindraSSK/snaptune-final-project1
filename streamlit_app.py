@@ -87,7 +87,7 @@ if uploaded_file:
 
         st.subheader("📸 Instagram Caption & Quote")
         st.text_area("📝 Caption", value=final_caption or "No caption generated", height=70)
-        st.text_area("🏷️ Hashtags", value=final_hashtags or "#music", height=50)
+        st.text_area("🏷️ Hashtags", value=final_hashtags or "#music", height=70)
         st.markdown(f"💬 **Quote:** _{final_quote}_")
     except Exception as e:
         st.error(f"⚠️ Failed to generate social content: {e}")
