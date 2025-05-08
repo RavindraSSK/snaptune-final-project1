@@ -1,7 +1,6 @@
 import streamlit as st
 from PIL import Image
 from transformers import BlipProcessor, BlipForConditionalGeneration, pipeline
-
 import spotipy
 from spotipy.oauth2 import SpotifyClientCredentials
 import os
