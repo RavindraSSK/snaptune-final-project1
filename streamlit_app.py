@@ -29,6 +29,23 @@ if uploaded_file:
     out = model.generate(**inputs)
     caption = processor.decode(out[0], skip_special_tokens=True)
     st.success(f"🧠 Caption: {caption}")
+    st.info("Inferring mood using zero-shot classification...")
+
+classifier = pipeline("zero-shot-classification", model="facebook/bart-large-mnli")
+candidate_labels = ["happy", "romantic", "sad", "calm", "energetic", "peaceful", "playful", "dark", "dreamy"]
+
+result = classifier(caption, candidate_labels)
+top_moods = result["labels"][:3]  # Pick top 3
+
+mood_keywords = ", ".join(top_moods)
+st.success(f"🎼 Inferred Mood: {mood_keywords}")
+    import matplotlib.pyplot as plt
+
+st.markdown("### 🎭 Mood Confidence Chart")
+fig, ax = plt.subplots()
+ax.bar(result["labels"][:5], result["scores"][:5], color='purple')
+ax.set_ylabel("Confidence")
+st.pyplot(fig)
 
     # ✨ Step 2: Generate mood/theme with DistilGPT2
     st.info("Inferring mood from caption...")
