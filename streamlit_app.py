@@ -1,7 +1,6 @@
 import streamlit as st
 from PIL import Image
 from transformers import BlipProcessor, BlipForConditionalGeneration, pipeline
-from transformers import pipeline
 import spotipy
 from spotipy.oauth2 import SpotifyClientCredentials
 import os
@@ -19,7 +18,7 @@ uploaded_file = st.file_uploader("📷 Upload an image", type=["jpg", "jpeg", "p
 
 if uploaded_file:
     image = Image.open(uploaded_file).convert("RGB")
-    st.image(image, caption="Uploaded Image", use_container_width=True)
+    st.image(image, caption="Uploaded Image", use_column_width=True)
 
     # ✨ Step 1: Generate image caption using BLIP
     st.info("Generating image caption...")
@@ -31,20 +30,6 @@ if uploaded_file:
     st.success(f"🧠 Caption: {caption}")
 
     # ✨ Step 2: Generate mood/theme with DistilGPT2
-    st.info("Inferring mood using zero-shot classification...")
-
-    classifier = pipeline("zero-shot-classification", model="facebook/bart-large-mnli")
-    candidate_labels = ["happy", "romantic", "sad", "calm", "energetic", "peaceful", "playful", "dark", "dreamy"]
-
-    result = classifier(caption, candidate_labels)
-    top_moods = result["labels"][:3]  # Pick top 3
-
-    mood_keywords = ", ".join(top_moods)
-    st.success(f"🎼 Inferred Mood: {mood_keywords}")
-
-    
-    
-    
     st.info("Inferring mood from caption...")
     theme_generator = pipeline("text-generation", model="distilgpt2")
     theme_prompt = f"What kind of music suits this caption: '{caption}'? Use 2-3 words only."
@@ -106,4 +91,3 @@ if uploaded_file:
         st.markdown(f"💬 **Quote:** _{final_quote}_")
     except Exception as e:
         st.error(f"⚠️ Failed to generate social content: {e}")
-
