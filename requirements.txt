@@ -3,5 +3,3 @@ pandas
 transformers
 spotipy
 torch
-matplotlib
-wordcloud
