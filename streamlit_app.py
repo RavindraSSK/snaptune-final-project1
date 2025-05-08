@@ -20,7 +20,6 @@ if uploaded_file:
     image = Image.open(uploaded_file).convert("RGB")
     st.image(image, caption="Uploaded Image", use_container_width=True)
 
-
     # ✨ Step 1: Generate image caption using BLIP
     st.info("Generating image caption...")
     processor = BlipProcessor.from_pretrained("Salesforce/blip-image-captioning-base")
@@ -29,19 +28,6 @@ if uploaded_file:
     out = model.generate(**inputs)
     caption = processor.decode(out[0], skip_special_tokens=True)
     st.success(f"🧠 Caption: {caption}")
-    
-
-    classifier = pipeline("zero-shot-classification", model="facebook/bart-large-mnli")
-    candidate_labels = ["happy", "romantic", "sad", "calm", "energetic", "peaceful", "playful", "dark", "dreamy"]
-
-    result = classifier(caption, candidate_labels)
-    top_moods = result["labels"][:3]  # Pick top 3
-
-    mood_keywords = ", ".join(top_moods)
-    st.success(f"🎼 Inferred Mood: {mood_keywords}")
-    
-
-
 
     # ✨ Step 2: Generate mood/theme with DistilGPT2
     st.info("Inferring mood from caption...")
