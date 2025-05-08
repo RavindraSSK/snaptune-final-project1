@@ -29,7 +29,7 @@ if uploaded_file:
     out = model.generate(**inputs)
     caption = processor.decode(out[0], skip_special_tokens=True)
     st.success(f"🧠 Caption: {caption}")
-    st.info("Inferring mood using zero-shot classification...")
+    
 
     classifier = pipeline("zero-shot-classification", model="facebook/bart-large-mnli")
     candidate_labels = ["happy", "romantic", "sad", "calm", "energetic", "peaceful", "playful", "dark", "dreamy"]
