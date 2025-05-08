@@ -39,13 +39,9 @@ if uploaded_file:
 
     mood_keywords = ", ".join(top_moods)
     st.success(f"🎼 Inferred Mood: {mood_keywords}")
-    import matplotlib.pyplot as plt
+    
 
-    st.markdown("### 🎭 Mood Confidence Chart")
-    fig, ax = plt.subplots()
-    ax.bar(result["labels"][:5], result["scores"][:5], color='purple')
-    ax.set_ylabel("Confidence")
-    st.pyplot(fig)
+
 
     # ✨ Step 2: Generate mood/theme with DistilGPT2
     st.info("Inferring mood from caption...")
