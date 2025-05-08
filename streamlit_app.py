@@ -3,8 +3,6 @@ from PIL import Image
 from transformers import BlipProcessor, BlipForConditionalGeneration, pipeline
 import spotipy
 from spotipy.oauth2 import SpotifyClientCredentials
-import matplotlib.pyplot as plt
-import wordcloud
 import os
 
 # Load Spotify credentials from Streamlit Secrets
@@ -37,24 +35,6 @@ if uploaded_file:
     theme_output = theme_generator(prompt, max_new_tokens=20, do_sample=True)[0]['generated_text']
     mood_keywords = theme_output.split(":")[-1].strip()
     st.success(f"🎼 Inferred Mood: {mood_keywords}")
-
-    # Mood Bar Chart (mock example)
-    st.markdown("### 🎭 Mood Intensity Chart")
-    mock_moods = ["Happy", "Sad", "Romantic", "Energetic"]
-    import random
-    scores = [random.randint(10, 90) for _ in mock_moods]
-    fig, ax = plt.subplots()
-    ax.bar(mock_moods, scores, color='skyblue')
-    ax.set_ylabel("Intensity")
-    st.pyplot(fig)
-
-    # Word Cloud
-    st.markdown("### ☁️ Word Cloud from Caption")
-    wc = wordcloud.WordCloud(width=500, height=300, background_color='white').generate(caption)
-    fig_wc, ax_wc = plt.subplots()
-    ax_wc.imshow(wc, interpolation='bilinear')
-    ax_wc.axis('off')
-    st.pyplot(fig_wc)
 
     # Step 3: Music Recommendations
     st.markdown("### 🎧 Recommended Songs")
